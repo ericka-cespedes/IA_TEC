@@ -59,6 +59,10 @@
     (volar b )
 =>
     (printout t "Velocidad maxima" crlf)
+    (printout t "a. Vuela a 100kph" crlf)
+    (printout t "b. Vuela a más de 300kph" crlf)
+    (printout t "c. Otra velocidad" crlf)
+    (printout t "(responder a/b/c): ")
     (assert (velocidad (read))))
 
 ;;;;;;;;;;;;;;;;;;
@@ -233,4 +237,109 @@
     (explicaciónUnk1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Albatros
 
+(defrule RR3 "Albatros" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad a)
+
+=>
+    (printout t " Es un albatros " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónAlbatros1()
+    (printout t "Tiene plumas" crlf)
+    (printout t "Puede volar" crlf)
+    (printout t "Vuela a 100kph" crlf)
+)
+
+(defrule RR3E "Albatros Explicación 1" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad a)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónAlbatros1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Albatros
+
+    (defrule RR4 "Halcón" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad b)
+
+=>
+    (printout t " Es un halcón " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónHalcón1()
+    (printout t "Tiene plumas" crlf)
+    (printout t "Puede volar" crlf)
+    (printout t "Vuela a más de 300kph" crlf)
+)
+
+(defrule RR4E "Halcón Explicación 1" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad b)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónHalcón1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Ave desconocida
+
+(defrule RR5 "Ave desconocida" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad c)
+
+=>
+    (printout t " Es un ave desconocida " crlf)
+	(printout t "Desea ver la explicación ?" crlf)
+    (printout t "a. Sí" crlf)
+    (printout t "b. No" crlf)
+    (assert (explicar (read))))
+
+(deffunction explicaciónADesconodida1()
+    (printout t "Tiene plumas" crlf)
+    (printout t "Puede volar" crlf)
+    (printout t "Velocidad desconocida" crlf)
+)
+
+(defrule RR5E "Ave desconocida Explicación 1" 
+;;Plumas
+    (cobertura b)
+;;Vuela
+    (volar b)
+;;Velocidad
+    (velocidad c)
+;;Quiso la explicación
+    (explicar a)
+=>
+    (explicaciónADesconodida1))
